@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from 'react-bootstrap/Button';
 
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
@@ -24,7 +25,10 @@ export function LoginView(props) {
       </label>
       <button type="submit" onClick={handleSubmit}>Submit</button>
      <p>You´re not registered yet ?</p>
-      <Button variant="dark">Register</Button>
+
+     <Button variant="flat" size="xxl">
+        flat button
+      </Button>
     </form>
   );
 }
