@@ -26,7 +26,7 @@ export function LoginView(props) {
       </label>
       <button type="submit" onClick={handleSubmit}>Submit</button>
 
-     <p>You´re not registered yet ?</p>
+     <p>You are not registered yet ?</p>
 
      <Button variant="flat" size="xxl">
         Register
