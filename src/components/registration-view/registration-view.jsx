@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import Button from 'react-bootstrap/Button';
 
-export function RegistationView(props) {
-  const [ Username, setUsername ] = useState('');
-  const [ Email, setEmail ] = useState('');
-  const [ Password, setPassword ] = useState('');
+export function RegistrationView(props) {
+  const [ username, setUsername ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(Username, Password, Email);
-    props.onLoggedIn(Username);
+    console.log(username, password, email);
+    props.onLoggedIn(username);
   };
 
   return (
@@ -25,8 +27,8 @@ export function RegistationView(props) {
         Email:
         <input type="password" value={email} onChange={e => setEmail(e.target.value)} />
       </label>
-      <button type="submit" onClick={handleSubmit}>Submit</button>
-      <button>Login</button>
+      <Button type="submit" variant="primary"onClick={handleSubmit}>Submit</Button>
+      <Button variant="secondary" type="submit">Login</Button>
     </form>
   );
 }
