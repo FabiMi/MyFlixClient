@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+
+
+
+
 import './login-view.scss';
 import { RegistrationView } from '../registration-view/registration-view';
 
@@ -18,9 +22,6 @@ export function LoginView(props) {
     setIsShown(true);
   };
 
-
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, password);
@@ -30,20 +31,22 @@ export function LoginView(props) {
   };
 
   return (
-    <div>
+    <React.Fragment>
       {isShown && <RegistrationView />}
-      {!isShown && <form>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
+      {!isShown && <Form>
+        <Form.Group controlId="formUsername">
+        <Form.Label>Username:</Form.Label>
+        <Form.Control type="text" placeholder="Enter Username" value={username} onChange={e => setUsername(e.target.value)} />
+      </Form.Group>
+
+      <Form.Group controlId="formPassword">
+        <Form.Label>Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+      </Form.Group>
       <Button type="submit" variant="primary"  onClick={handleSubmit}>Submit</Button>
       <Button type="submit" variant="secondary" onClick={handleRegister}>Register</Button>
-    </form>}
-    </div>
+      </Form>}
+      </React.Fragment>
   );
 }
+
