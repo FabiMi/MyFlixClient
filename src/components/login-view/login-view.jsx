@@ -1,6 +1,12 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import PropTypes from 'prop-types'
+import axios from 'axios'
+
+
+
+
 import './login-view.scss';
 import { RegistrationView } from '../registration-view/registration-view';
 
@@ -11,6 +17,13 @@ export function LoginView(props) {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
 
+   //Hook for the inputs
+   const [usernameErr, setUsernameErr] = useState('');
+   const [passwordErr, setPasswordErr] = useState('');
+
+
+
+
   const [isShown, setIsShown] = useState(false);
 
   const handleRegister = (e) => {
@@ -18,15 +31,37 @@ export function LoginView(props) {
     setIsShown(true);
   };
 
+  const validate = () => { let isReq = true; 
+    if(!username){setUsernameErr('Username Required');
+  isReq = false;}
+else if (username.length < 2){
+  setUsernameErr('Username must be 2 charcters long');
+  isReq = false;
+}
+if(!password) {setPasswordErr('Password Required');
+isReq = false;}
+else if(password.length < 6) {
+  setPassword('Password must be 6 Characters long');
+  isReq = false;
+}
 
-
+return isReq;}
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(username, password);
-    // Send a request to the server for authentication /
-    // then call props.onLoggedIn(username) /
-    props.onLoggedIn(username);
+    const isReq = validate();
+    if (isReq) {
+      axios.post('http://fabiflix.herokuapp.com/login', {
+        Username: username,
+        Password: password
+      }) .then(response =>{
+        const data = response.data;
+        props.onLoggedIn(data);
+      })
+      .catch(e => {
+        console.log('no such user')
+      });
+    }
   };
 
   return (
