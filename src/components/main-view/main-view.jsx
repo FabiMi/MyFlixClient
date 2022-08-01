@@ -96,7 +96,7 @@ export class MainView extends React.Component {
       ))
     }
   </Row>
-  <Button onClick={() => { this.onLoggedOut() }}>Logout</Button>
+  
       </Container>
     );
   }
