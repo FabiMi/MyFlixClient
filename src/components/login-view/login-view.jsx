@@ -1,17 +1,10 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
-import PropTypes from 'prop-types'
+import propTypes from 'prop-types'
 import axios from 'axios'
 
 
-
-
 import './login-view.scss';
-import { RegistrationView } from '../registration-view/registration-view';
-
-
-
 
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
@@ -21,15 +14,17 @@ export function LoginView(props) {
    const [usernameErr, setUsernameErr] = useState('');
    const [passwordErr, setPasswordErr] = useState('');
 
-
-
-
-  const [isShown, setIsShown] = useState(false);
+  
 
   const handleRegister = (e) => {
-    e.preventDefault();
-    setIsShown(true);
-  };
+    e.preventDefault()
+    props.onRegistered(true)
+  }
+
+  
+
+
+  
 
   const validate = () => { let isReq = true; 
     if(!username){setUsernameErr('Username Required');
@@ -66,8 +61,7 @@ return isReq;}
 
   return (
     <div>
-      {isShown && <RegistrationView />}
-      {!isShown && <form>
+      <form>
       <label>
         Username:
         <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
@@ -78,7 +72,7 @@ return isReq;}
       </label>
       <Button type="submit" variant="primary"  onClick={handleSubmit}>Submit</Button>
       <Button type="submit" variant="secondary" onClick={handleRegister}>Register</Button>
-    </form>}
+    </form>
     </div>
   );
 }

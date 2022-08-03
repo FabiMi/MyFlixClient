@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 
-
+import { Button } from "react-bootstrap";
 
 export function RegistrationView(props) {
   const [ username, setUsername ] = useState('');
@@ -12,7 +11,7 @@ export function RegistrationView(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(username, password, email);
-    props.onLoggedIn(username);
+    props.onRegistered(false);
   };
 
   return (
@@ -36,10 +35,5 @@ export function RegistrationView(props) {
 }
 
 RegistrationView.propTypes = {
-  register: PropTypes.shape({
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
-    Email: PropTypes.string.isRequired,
-  }).isRequired,
-  onRegistration: PropTypes.func.isRequired,
+  onRegistered: PropTypes.func.isRequired,
 };

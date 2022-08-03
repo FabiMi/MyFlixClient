@@ -6,6 +6,8 @@ import Container from 'react-bootstrap/Container';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view';
+
 
 export class MainView extends React.Component {
   constructor(){
@@ -13,7 +15,8 @@ export class MainView extends React.Component {
     this.state = {
       movies: [],
       selectedMovie: null,
-      user: null
+      user: null,
+      registered: null
     }
   }
 
@@ -41,13 +44,20 @@ export class MainView extends React.Component {
   onLoggedIn(authData) {
     console.log(authData);
     this.setState({
-      user: authData.user.Username
+    user: authData.user.username
     });
   
     localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.user.Username);
+    localStorage.setItem('user', authData.user.username);
     this.getMovies(authData.token);
   }
+
+  onRegistered(registered) {
+    this.setState({
+      registered,
+    });
+  }
+
 
   getMovies(token) {
     axios.get('https://fabiflix.herokuapp.com/movies', {
@@ -73,10 +83,24 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, selectedMovie, user } = this.state;
+    const { movies, selectedMovie, user, registered } = this.state;
+
+    if (registered) { return (
+      <RegistrationView 
+        onRegistered={(register) => this.onRegistered(register)} 
+      />
+    );
+  }
 
     // If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
-    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+    if (!user){ return (
+      <LoginView 
+        onLoggedIn={(user) => this.onLoggedIn(user)}
+        onRegistered={(register) => this.onRegistered(register)}
+      />
+    );
+  }
+
 
     if (movies.length === 0) return <div className="main-view" />;
 
