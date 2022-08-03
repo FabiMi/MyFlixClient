@@ -3,6 +3,7 @@ import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
+
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
@@ -101,8 +102,12 @@ export class MainView extends React.Component {
     );
   }
 
-
-    if (movies.length === 0) return <div className="main-view" />;
+  
+      // If there is no user, the LoginView is rendered. If there is a user logged in, the user details are passed as a prop to the LoginView*/
+      if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
+  
+      if (movies.length === 0) return <div className="main-view" />;
+  
 
     return (
       <Container className="main-view">
