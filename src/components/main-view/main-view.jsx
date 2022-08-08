@@ -22,7 +22,7 @@ export class MainView extends React.Component {
   }
 
   componentDidMount() {
-    let token =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNkNGI4YjM3N2NmZTcwODk5YmNmNDQiLCJVc2VybmFtZSI6InNvbmlhd29sZiIsIlBhc3N3b3JkIjoiJDJiJDEwJDQ4dEhEWC9mSDlZUng1SlFtWWFVU2VoTk1GeUJhWU9mNlhFbG9ZcUk1bmVpWkk4ZWVjZjFpIiwiRW1haWwiOiJob2xsYUBtZS5jb20iLCJGYXZfTW92aWUiOltdLCJfX3YiOjAsImlhdCI6MTY1NzYyMTQwMiwiZXhwIjoxNjU4MjI2MjAyLCJzdWIiOiJzb25pYXdvbGYifQ.3OfGR3U8VpSLUEjcF0v3ouE-90RAeKO40iBxWKPNVa0"
+    let token = localStorage.getItem(JSON.stringify("token"));
     axios.get("https://fabiflix.herokuapp.com/movies", {
         headers: { Authorization: `Bearer ${token}` },
       })
