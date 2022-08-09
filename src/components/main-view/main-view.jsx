@@ -22,18 +22,13 @@ export class MainView extends React.Component {
   }
 
   componentDidMount() {
-    let token = localStorage.getItem(JSON.stringify("token"));
-    axios.get("https://fabiflix.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then(response => {
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    let accessToken = localStorage.getItem('token');
+        if (accessToken !== null) {
+          this.setState({
+            user: localStorage.getItem('user')
+          });
+          this.getMovies(accessToken);
+        }
   }
 
   setSelectedMovie(newSelectedMovie) {
@@ -43,14 +38,14 @@ export class MainView extends React.Component {
   }
 
   onLoggedIn(authData) {
-    console.log(authData);
-    this.setState({
-    user: authData.user.username
-    });
-  
-    localStorage.setItem('token', authData.token);
-    localStorage.setItem('user', authData.user.username);
-    this.getMovies(authData.token);
+    console.log(authData.user.Username);
+      authData && this.setState({
+        user: authData.user.Username
+      });
+
+      localStorage.setItem('token', authData.token);
+      localStorage.setItem('user', authData.user.Username);
+      this.getMovies(authData.token);
   }
 
   onRegistered(registered) {
@@ -85,9 +80,9 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, selectedMovie, user, registered } = this.state;
-
+    console.log('user: ', user)
     if (registered) { return (
-      <RegistrationView 
+      <RegistrationView
         onRegistered={(register) => this.onRegistered(register)} 
       />
     );
@@ -97,7 +92,6 @@ export class MainView extends React.Component {
     if (!user){ return (
       <LoginView 
         onLoggedIn={(user) => this.onLoggedIn(user)}
-        onRegistered={(register) => this.onRegistered(register)}
       />
     );
   }
@@ -116,7 +110,7 @@ export class MainView extends React.Component {
         </Col>
       )
       : movies.map(movie => (
-        <Col md={3}>
+        <Col md={3} key={movie._id}>
           <MovieCard key={movie._id} movie={movie} onMovieClick={newSelectedMovie => { this.setSelectedMovie(newSelectedMovie); }}/>
         </Col>
       ))

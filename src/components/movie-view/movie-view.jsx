@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
+
 export class MovieView extends React.Component {
 
   render() {
