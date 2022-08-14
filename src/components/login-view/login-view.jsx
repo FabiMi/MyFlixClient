@@ -21,10 +21,6 @@ export function LoginView(props) {
     props.onRegistered(true)
   }
 
-  
-
-
-  
 
   const validate = () => { let isReq = true; 
     if(!username){setUsernameErr('Username Required');
@@ -44,20 +40,12 @@ return isReq;}
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const isReq = validate();
-    if (isReq) {
-      axios.post('http://fabiflix.herokuapp.com/login', {
-        Username: username,
-        Password: password
-      }) .then(response =>{
-        const data = response.data;
-        props.onLoggedIn(data);
-      })
-      .catch(e => {
-        console.log('no such user')
-      });
-    }
-  };
+    
+        props.onLoggedIn(username);
+      }
+      
+    
+
 
   return (
     <div>
