@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 export class DirectorView extends React.Component {
 
   render() {
-    const { director, onBackClick } = this.props;
+    const { movie, director, onBackClick } = this.props;
 
     return (
       <div className="director-view">
