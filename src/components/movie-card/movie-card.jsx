@@ -1,10 +1,27 @@
 import React from 'react';
 import { Link } from "react-router-dom";
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
 export class MovieCard extends React.Component {
+  addFavorite() {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+    axios
+      .post(`https://fabiflix.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {}, {
+        headers: { Authorization: `Bearer ${token}` },
+        method: 'POST',
+      })
+        .then(response => {
+          alert(`Added to Favorite List`)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  };
+  
   render() {
     const { movie, onMovieClick } = this.props;
     return (
@@ -14,10 +31,11 @@ export class MovieCard extends React.Component {
             <Card.Title>{movie.Title}</Card.Title>
           <Card.Text>{movie.Description}</Card.Text>
           <Link to={`/movies/${movie._id}`}>
-            <Button variant="button">
+            <Button>
               Open
             </Button>
           </Link>
+          <Button value={movie._id} onClick={(e) => this.addFavorite(e, movie)}>Add to Favourites</Button>
           </Card.Body>
         </Card>
       );

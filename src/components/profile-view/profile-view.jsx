@@ -23,17 +23,17 @@ export function ProfileView({ movies }) {
       const getUser = () => {
         let token = localStorage.getItem('token');
         let user = localStorage.getItem("user");
-        axios.get(`https://fabiflix.herokuapp.com//users/${user}`, {
+        axios.get(`https://fabiflix.herokuapp.com/users/${user}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
           .then((response) => {
             setUsername(response.data.Username)
             setEmail(response.data.Email)
-            setFavouriteMovies(response.data.FavouriteMovies)
+            setFavouriteMovies(response.data.Fav_Movie)
             console.log(response.data)
           })
           .catch(e => {
-            console.log('Error')
+            console.log(e)
           });
       }
       const updateUser = () => {
@@ -81,7 +81,7 @@ const deleteUser = () => {
 
   const renderFavourites = () => {
     console.log(movies)
-    if (movies.length + 0) {
+    if (movies.length !== 0) {
 
       return (
         <Row className="justify-content-md-center">
@@ -98,26 +98,6 @@ const deleteUser = () => {
       )
     }
   }
-
-  const removeFavorite = (e, movie) => {
-    const username = localStorage.getItem("user");
-    console.log(username);
-    const token = localStorage.getItem("token");
-    console.log(this.props);
-    axios
-      .delete(
-        `https://ap-myflix.herokuapp.com/users/${Username}/movies/${movie._id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
-      )
-      .then((response) => {
-        console.log(response);
-        alert("Movie was removed from favorites.");
-        this.componentDidMount();
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-  };
 
   // Functions needed to open and close the modal (below) to delete a user 
   const handleClose = () => setShow(false);
@@ -169,19 +149,19 @@ const deleteUser = () => {
             Update you profile
           </Button>
 
-          {/* This button triggers a modal that's called bellow   */}
+          {/ This button triggers a modal that's called bellow   /}
           <Button className='deleteButton' variant="link" onClick={handleShow}>
             Delete your profile
           </Button>
         </Form>
 
-        {/* Calling the function that renders the modal to delete the users account */}
+        {/ Calling the function that renders the modal to delete the users account /}
         {cancelUserModal()}
 
         <p></p>
         <h2>Favourite Movies:</h2>
 
-        {/* Calling the function that renders the users favourite movies on the profile page */}
+        {/ Calling the function that renders the users favourite movies on the profile page /}
         {renderFavourites()}
 
       </Container>
