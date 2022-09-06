@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
@@ -11,8 +12,12 @@ export class MovieCard extends React.Component {
           <Card.Img variant="top" crossOrigin="anonymous" src={movie.ImagePath} />
           <Card.Body>
             <Card.Title>{movie.Title}</Card.Title>
-            <Card.Text>{movie.Description}</Card.Text>
-            <Button variant="outline-warning" onClick={() => onMovieClick(movie)}>Open</Button>
+          <Card.Text>{movie.Description}</Card.Text>
+          <Link to={`/movies/${movie._id}`}>
+            <Button variant="button">
+              Open
+            </Button>
+          </Link>
           </Card.Body>
         </Card>
       );

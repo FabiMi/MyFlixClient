@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import { Link } from "react-router-dom";
 
 import propTypes from 'prop-types';
 import axios from 'axios';
@@ -80,9 +81,8 @@ export function LoginView(props) {
           <p style={{color: "red"}}>{ passwordErr }</p>
       </Form.Group>
       <Button type="submit" variant="primary" style={{marginRight: "10px"}} onClick={handleSubmit}>Submit</Button>
-      <Button type="submit" variant="secondary" onClick={handleRegister}>Register</Button>
+      <Button type="submit" variant="secondary"><Link to={"/register"}>Register</Link></Button>
       </Form>
       </React.Fragment>
   );
 }
-

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
 
 import { Form, Button } from "react-bootstrap";
 import axios from 'axios';
@@ -103,7 +104,7 @@ export function RegistrationView(props) {
         <p style={{color: "red"}}>{ emailErr }</p>
       </Form.Group>
       <Button style={{marginRight: "10px"}} type="submit" variant="primary" onClick={handleSubmit}>Submit</Button>
-      <Button variant="secondary" type="submit">Login</Button>
+      <Button variant="secondary" type="submit"> <Link to={"/"}>Login</Link></Button>
     </Form>
   );
 }

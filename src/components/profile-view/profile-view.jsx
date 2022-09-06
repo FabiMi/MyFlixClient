@@ -59,7 +59,7 @@ export function ProfileView({ movies }) {
       }
 // Delete user 
 const deleteUser = () => {
-    setShowModal(false)
+    setShow(false)
     let token = localStorage.getItem('token');
     let user = localStorage.getItem("user");
     axios.delete(`https://fabiflix.herokuapp.com/users/${user}`,
@@ -99,7 +99,7 @@ const deleteUser = () => {
     }
   }
 
-  onRemoveFavorite = (e, movie) => {
+  const removeFavorite = (e, movie) => {
     const username = localStorage.getItem("user");
     console.log(username);
     const token = localStorage.getItem("token");
