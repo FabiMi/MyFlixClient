@@ -2,7 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import Container from 'react-bootstrap/Container';
+import { Routes, Link } from 'react-router-dom';
 
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -22,18 +25,13 @@ export class MainView extends React.Component {
   }
 
   componentDidMount() {
-    let token =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MmNkNGI4YjM3N2NmZTcwODk5YmNmNDQiLCJVc2VybmFtZSI6InNvbmlhd29sZiIsIlBhc3N3b3JkIjoiJDJiJDEwJDQ4dEhEWC9mSDlZUng1SlFtWWFVU2VoTk1GeUJhWU9mNlhFbG9ZcUk1bmVpWkk4ZWVjZjFpIiwiRW1haWwiOiJob2xsYUBtZS5jb20iLCJGYXZfTW92aWUiOltdLCJfX3YiOjAsImlhdCI6MTY1NzYyMTQwMiwiZXhwIjoxNjU4MjI2MjAyLCJzdWIiOiJzb25pYXdvbGYifQ.3OfGR3U8VpSLUEjcF0v3ouE-90RAeKO40iBxWKPNVa0"
-    axios.get("https://fabiflix.herokuapp.com/movies", {
-        headers: { Authorization: `Bearer ${token}` },
-      })
-      .then(response => {
+    let accessToken = localStorage.getItem('token');
+      if (accessToken !== null) {
         this.setState({
-          movies: response.data
+          user: localStorage.getItem('user')
         });
-      })
-      .catch(error => {
-        console.log(error);
-      });
+        this.getMovies(accessToken);
+      }
   }
 
   setSelectedMovie(newSelectedMovie) {
@@ -42,20 +40,21 @@ export class MainView extends React.Component {
     });
   }
 
-  onLoggedIn(user) {
+  onLoggedIn(authData) {
     this.setState({
-      user,
+      user: authData.user.Username,
     });
-  }
 
-  
+    localStorage.setItem('token', authData.token);
+    localStorage.setItem('user', authData.user.Username);
+    this.getMovies(authData.token);
+  }
 
   onRegistered(registered) {
     this.setState({
       registered,
     });
   }
-
 
   getMovies(token) {
     axios.get('https://fabiflix.herokuapp.com/movies', {
@@ -82,7 +81,23 @@ export class MainView extends React.Component {
 
   render() {
     const { movies, selectedMovie, user, registered } = this.state;
-    console.log('user: ', user)
+
+    // return (
+    //  user && <div className="main-view justify-content-center">
+    //     <Navbar fixed="top" className="mainnav py-3 py-lg-4" bg="dark" variant="dark" expand="md">
+    //       <Navbar.Brand href="/"><span className="brand-name">MyFlix App</span></Navbar.Brand>
+    //       <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    //       <Navbar.Collapse id="basic-navbar-nav">
+    //         <Nav className="ms-auto">
+    //           <Nav.Link href="/">Movies</Nav.Link>
+    //           <Nav.Link href="/users/:username">Profile</Nav.Link>
+    //           <Nav.Link href="/" onClick={() => { this.onLoggedOut() }} >Logout</Nav.Link>
+    //         </Nav>
+    //       </Navbar.Collapse>
+    //     </Navbar>
+    //   </div>
+    // );
+
     if (registered) { return (
       <RegistrationView
         onRegistered={(register) => this.onRegistered(register)} 
@@ -94,13 +109,14 @@ export class MainView extends React.Component {
     if (!user){ return (
       <LoginView 
         onLoggedIn={(user) => this.onLoggedIn(user)}
+        onRegistered={(register) => this.onRegistered(register)} 
+
       />
     );
   }
 
   
   if (movies.length === 0) return <div className="main-view" />;
-  
 
     return (
       <Container className="main-view">

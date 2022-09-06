@@ -99,6 +99,26 @@ const deleteUser = () => {
     }
   }
 
+  onRemoveFavorite = (e, movie) => {
+    const username = localStorage.getItem("user");
+    console.log(username);
+    const token = localStorage.getItem("token");
+    console.log(this.props);
+    axios
+      .delete(
+        `https://ap-myflix.herokuapp.com/users/${Username}/movies/${movie._id}`,
+        { headers: { Authorization: `Bearer ${token}` } }
+      )
+      .then((response) => {
+        console.log(response);
+        alert("Movie was removed from favorites.");
+        this.componentDidMount();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+
   // Functions needed to open and close the modal (below) to delete a user 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);

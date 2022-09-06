@@ -10,38 +10,31 @@ export class MovieView extends React.Component {
 
   render() {
     const { movie, onBackClick, director, genre } = this.props;
-
+    console.log('....', movie.Genre.Name)
     return (
       <Container>
         <Row>
           <Col>
           <Card className="movie-view" style={{ width: '40rem' }}>
         <Card.Body>
-                <Card.Img className="movie-view__image" crossOrigin="anonymous" variant="top" src={movie.ImagePath} />
-                <Card.Title className="title-style">{movie.Title}</Card.Title>
+          <Card.Img className="movie-view__image" crossOrigin="anonymous" variant="top" src={movie.ImagePath} />
+          <Card.Title className="title-style">{movie.Title}</Card.Title>
 
-                <Card.Text className="text-style">Director: {movie.director.Name}
-                  <Link to={`/directors/${movie.director.Name}`}>
-                    <Button variant="link">more info</Button>
-                  </Link>
-                </Card.Text>    
+          <Card.Text className="text-style">Director: 
+            {/* <Link to={`/directors/${movie.Director.Name}`}>*/}
+              <Button variant="link">{movie.Director.Name}</Button>
+              {/* </Link> */}
+          </Card.Text>
 
-                {/*<Card.Text className="text-style">Genre: {genre.Name}
-                  <Link to={`/genres/${movie.Genre.Name}`}>
-                    <Button variant="link">more info</Button>
-                  </Link>
-                      </Card.Text><Card.Text className="text-style">Genre: {genre.Name}
-                      <Link to={`/genres/${movie.Genre.Name}`}>
-                         <Button variant="link">more info</Button>
-                      </Link>
-              </Card.Text>*/}
+         
+                <Card.Text className="text-style">Genre:
+                {/* <Link to={`/genres/${movie.Genre.Name}`}>*/}
+                    <Button variant="link">{movie.Genre.Name}</Button>
+              { /* </Link> */}
+          </Card.Text>
 
-
-
-
-                <Card.Text className="text-style">{movie.Description}</Card.Text>
-                <Button variant="outline-warning" onClick={() => { onBackClick() }}>Back</Button>
-
+          <Card.Text className="text-style">{movie.Description}</Card.Text>
+          <Button variant="outline-warning" onClick={() => { onBackClick() }}>Back</Button>
         </Card.Body>
        </Card>
        </Col>
