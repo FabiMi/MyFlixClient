@@ -20,15 +20,15 @@ export class MovieView extends React.Component {
           <Card.Img className="movie-view__image" crossOrigin="anonymous" variant="top" src={movie.ImagePath} />
           <Card.Title className="title-style">{movie.Title}</Card.Title>
 
-          <Card.Text className="text-style">Director: {movie.Director.Name}
+          <Card.Text className="text-style">Director: 
             <Link to={`/directors/${movie.Director.Name}`}>
-              <Button variant="link">more info</Button>
+              <Button variant="link">{movie.Director.Name}</Button>
             </Link>
           </Card.Text>
 
-          <Card.Text className="text-style">Genre: {movie.Genre.Name}
+          <Card.Text className="text-style">Genre: 
             <Link to={`/genres/${movie.Genre.Name}`}>
-              <Button variant="link">more info</Button>
+              <Button variant="link">{movie.Genre.Name}</Button>
             </Link>
                 </Card.Text>
           <Card.Text className="text-style">{movie.Description}</Card.Text>
