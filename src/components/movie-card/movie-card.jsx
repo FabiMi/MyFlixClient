@@ -21,6 +21,23 @@ export class MovieCard extends React.Component {
           console.log(error);
         });
   };
+
+  removeFavorite () {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+    axios
+      .delete(`https://fabiflix.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {}, {
+        headers: { Authorization: `Bearer ${token}` },
+        method: 'DELETE',
+      })
+        .then(response => {
+          alert(`Deleted out of you Favorite List`)
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+  };
+
   
   render() {
     const { movie, onMovieClick } = this.props;
@@ -36,6 +53,7 @@ export class MovieCard extends React.Component {
             </Button>
           </Link>
           <Button value={movie._id} onClick={(e) => this.addFavorite(e, movie)}>Add to Favourites</Button>
+          <Button value={movie._id} onClick={(e) => this.removeFavorite(e, movie)}>Delete</Button>
           </Card.Body>
         </Card>
       );
