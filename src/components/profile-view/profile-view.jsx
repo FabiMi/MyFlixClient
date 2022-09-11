@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './profile-view.scss'
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Form, Button, Card, CardGroup, Container, Col, Row, Modal } from 'react-bootstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { MovieCard } from '../movie-card/movie-card';
+import { setUser } from '../../actions/actions';
 
 
 export function ProfileView({ movies }) {
