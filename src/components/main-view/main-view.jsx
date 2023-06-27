@@ -1,7 +1,11 @@
+/**
+ * the main-view component is the first one that gets mounted onto the DOM. It is the 'entry point' into the application. It Renders all the other components. If the user is not logged in, it renders the LoginView component. If the user is logged in, it renders the movies list view, which is the default view.
+ * @class MainView
+ *@requires react
+ */
 import React from "react";
 import axios from "axios";
 import { connect } from 'react-redux';
-
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -70,7 +74,7 @@ class MainView extends React.Component {
       .then((response) => {
         // Assign the result to the state
         this.props.setMovies(response.data);
-        
+
       })
       .catch(function (error) {
         console.log(error);
@@ -107,8 +111,8 @@ class MainView extends React.Component {
                   </Col>
                 );
               if (movies.length === 0) return <div className="main-view" />;
-              return <MoviesList movies={movies}/>;
-            }}/>
+              return <MoviesList movies={movies} />;
+            }} />
 
           <Route
             path="/register"
@@ -212,13 +216,14 @@ class MainView extends React.Component {
         </Row>
       </Router>
     );
-          }}
+  }
+}
 
-    let mapStateToProps = state => {
-      return { movies: state.movies }
-    
-    }
-    export default connect(mapStateToProps, { setMovies } )(MainView);
+let mapStateToProps = state => {
+  return { movies: state.movies }
+
+}
+export default connect(mapStateToProps, { setMovies })(MainView);
 
 
 

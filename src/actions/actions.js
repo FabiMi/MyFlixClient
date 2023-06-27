@@ -1,3 +1,11 @@
+/**
+ * @description This file contains all the actions that are used in the application. The actions are used to update the state of the application.
+ * 
+ **/
+
+
+
+
 export const SET_MOVIES = 'SET_MOVIES';
 export const SET_DIRECTORS = 'SET_DIRECTORS';
 export const SET_GENRES = 'SET_GENRES';

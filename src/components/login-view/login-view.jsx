@@ -1,14 +1,23 @@
+/** 
+ The LoginView component allows the user to log in. The component is exported and rendered in the main-view.jsx file.
+ */
+
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { Link } from "react-router-dom";
-
 import propTypes from 'prop-types';
 import axios from 'axios';
 
-
-
 import './login-view.scss';
+
+
+/**
+ * @description renders the login view
+ * @function LoginView
+ * @param {string} props - onLoggedIn
+ * @returns {LoginView}
+ */
 
 export function LoginView(props) {
   const [ username, setUsername ] = useState('');
@@ -19,13 +28,21 @@ export function LoginView(props) {
   const [passwordErr, setPasswordErr] = useState('');
 
   
-
-  const handleRegister = (e) => {
+/** 
+ * handle the submit button to prevent the default refresh
+ */
+  const handleRegister = (e) => {  // 
     e.preventDefault()
     props.onRegistered(true)
   }
 
-
+  /**
+   * @description validates the input fields
+    * @function validate
+    * @param {string} username
+    * @param {string} password
+    * @returns {boolean}
+   */
   const validate = () => { let isReq = true; 
     if(!username){setUsernameErr('Username Required');
     isReq = false;}
@@ -43,6 +60,16 @@ export function LoginView(props) {
     return isReq;
   }
 
+
+
+/**
+ * @description handles the submit button
+ * @function handleSubmit
+ * @param {string} username
+ * @param {string} password
+ * @returns {null}
+ * @returns {post}
+ */
   const handleSubmit = (e) => {
     e.preventDefault();
     const validInput = validate({ username, password });
@@ -50,7 +77,7 @@ export function LoginView(props) {
     if (!validInput) {
       return null;
     }
-    // Send a request to the server for authentication 
+    // Send a request to the server for authentication with axios
     axios.post('https://fabiflix.herokuapp.com/login', {
       Username: username,
       Password: password
@@ -66,16 +93,23 @@ export function LoginView(props) {
   }
 
 
+
+
+  /**
+   * @description renders the login view form, login button and  the register button
+   * @function render
+   * @returns {LoginView}
+   */
   return (
     <React.Fragment>
       <Form>
-        <Form.Group controlId="formUsername">
+        <Form.Group controlId="formUsername"> {/*controlId is a unique id for each form*/}
         <Form.Label>Username:</Form.Label>
-          <Form.Control type="text" placeholder="Enter Username" value={username} onChange={e => setUsername(e.target.value)} />
+          <Form.Control type="text" placeholder="Enter Username" value={username} onChange={e => setUsername(e.target.value)} /> //onCh
           <p style={{color: "red"}}>{ usernameErr }</p>
       </Form.Group>
 
-      <Form.Group controlId="formPassword">
+      <Form.Group controlId="formPassword"> {/*controlId is a unique id for each form*/}
         <Form.Label>Password</Form.Label>
           <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
           <p style={{color: "red"}}>{ passwordErr }</p>
