@@ -1,3 +1,7 @@
+/**
+ * @fileoverview this component renders the profile view. The component is exported and rendered in the main-view.jsx file.
+ * 
+ */
 import React, { useEffect, useState } from 'react';
 import './profile-view.scss'
 import { connect } from 'react-redux';
@@ -16,12 +20,19 @@ export function ProfileView({ movies }) {
     const [favouriteMovies, setFavouriteMovies] = useState([]);
     const [show, setShow] = useState(false); // setting the state for the deleteUser modal 
   
-
-    useEffect(() => {
+    useEffect(() => { // this is the same as componentDidMount()
         getUser()
       }, [])
     
 
+      /**
+       * @description gets the user data from the database
+       * @function getUser
+       * @param {string} token
+       * @param {string} user
+       * @returns {object} user
+       * @method: 'GET',
+       */
       const getUser = () => {
         let token = localStorage.getItem('token');
         let user = localStorage.getItem("user");
@@ -38,6 +49,18 @@ export function ProfileView({ movies }) {
             console.log('Error')
           });
       }
+
+      /**
+       * @description updates the user data in the database
+       * @function updateUser
+       * @param {string} token
+       * @param {string} user
+       * @param {string} username
+       * @param {string} email
+       * @param {string} password
+       * @returns {object} user
+       * @method: 'PUT',
+        */
       const updateUser = () => {
         let token = localStorage.getItem('token');
         let user = localStorage.getItem("user");
@@ -59,7 +82,15 @@ export function ProfileView({ movies }) {
             console.log('Error')
           });
       }
-// Delete user 
+
+/**
+ * @description deletes the user from the database
+ * @function deleteUser
+ * @param {string} token
+ * @param {string} user
+ * @method: 'DELETE'
+ * @returns {null} null
+ * */
 const deleteUser = () => {
     setShow(false)
     let token = localStorage.getItem('token');
@@ -81,6 +112,12 @@ const deleteUser = () => {
       });
   }
 
+  /** 
+  * @description renders the users favourite movies
+  * @function renderFavourites
+  * @param {array} movies
+  * @returns {array} movies
+  * */
   const renderFavourites = () => {
     console.log(movies)
     if (movies.length !== 0) {
@@ -130,7 +167,7 @@ const deleteUser = () => {
     );
   }
 
-
+// Rendering the profile page
   return (
     <>
       <Container>

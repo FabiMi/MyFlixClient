@@ -1,3 +1,7 @@
+/** 
+ *@fileoverview This component renders the movie data as a card with a link to the movie view. It also has a button that allows the user to add the movie to their list of favorites.
+ */
+
 import React from 'react';
 import { Link } from "react-router-dom";
 import axios from 'axios';
@@ -5,7 +9,18 @@ import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
+
+
 export class MovieCard extends React.Component {
+
+  /**
+   * @description adds movie to favorite list
+   * @function addFavorite
+   * @param {string} token
+   * @param {string} user 
+   * @param {string} movie
+   * @method: 'POST',
+   */
   addFavorite() {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
@@ -22,6 +37,15 @@ export class MovieCard extends React.Component {
         });
   };
 
+
+  /**
+   * @description removes movie from favorite list
+   * @function removeFavorite
+   * @param {string} token
+   * @param {string} user
+   * @param {string} movie
+   * @method: 'DELETE',
+   */
   removeFavorite () {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
@@ -38,7 +62,7 @@ export class MovieCard extends React.Component {
         });
   };
 
-  
+
   render() {
     const { movie, onMovieClick } = this.props;
     return (
@@ -60,6 +84,13 @@ export class MovieCard extends React.Component {
   }
 }
 
+/**
+ * @description defines the props the component expects to receive from the parent component(main-view)
+ * @function propTypes
+ * @param {object} movie
+ * @param {function} onMovieClick
+ * @returns {propTypes}
+ */
 MovieCard.propTypes = {
     movie: PropTypes.shape({
       Title: PropTypes.string.isRequired,

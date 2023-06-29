@@ -1,5 +1,5 @@
 /**
- the director view allows the user to see the director details. The props are passed down from the main view.
+ @fileoverview the director view allows the user to see the director details. The props are passed down from the main view.
  */
 
 

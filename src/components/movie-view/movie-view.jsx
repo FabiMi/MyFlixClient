@@ -1,3 +1,7 @@
+/** 
+* @fileoverview This component renders the movie data as a card with a link to the movie view. It also has a button that allows the user to add the movie to their list of favorites.
+*/
+
 import React from 'react';
 import { Card, Col, Container, Row, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
@@ -17,7 +21,7 @@ export class MovieView extends React.Component {
           <Col>
           <Card className="movie-view" style={{ width: '40rem' }}>
         <Card.Body>
-          <Card.Img className="movie-view__image" crossOrigin="anonymous" variant="top" src={movie.ImagePath} />
+          <Card.Img className="movie-view__image" crossOrigin="anonymous" variant="top" src={movie.ImagePath} /> 
           <Card.Title className="title-style">{movie.Title}</Card.Title>
 
           <Card.Text className="text-style">Director: 
@@ -41,7 +45,12 @@ export class MovieView extends React.Component {
     );
   }
 }
-
+/**
+ * @description defines the props the component expects to receive from the parent component(main-view)
+ * @function propTypes
+ * @param {object} movie
+ * @returns {propTypes}
+ * */
 MovieView.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,

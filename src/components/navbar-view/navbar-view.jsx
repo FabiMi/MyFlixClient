@@ -1,3 +1,8 @@
+/**
+ * @fileoverview this component renders the Navbar and its elements. The component is exported and rendered in the main-view.jsx file.
+ */
+
+
 import React from "react";
 import './navbar-view.scss';
 import { Navbar, Container, Nav, Button, Offcanvas, NavDropdown, Form, FormControl } from 'react-bootstrap';

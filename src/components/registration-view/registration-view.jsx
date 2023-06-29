@@ -1,3 +1,7 @@
+/**
+ * @fileoverview this component renders the registration view. The component is exported and rendered in the main-view.jsx file.
+ */
+
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
@@ -45,6 +49,13 @@ export function RegistrationView(props) {
     return isReq;
   }
 
+  /**
+   *  @description handles the submit button to prevent the default refresh
+   * @param {*} e 
+   * @returns saves the user data in the database
+   * @method: 'POST',
+   * 
+   */
   const handleSubmit = (e) => {
     e.preventDefault();
     const validInput = validate({ username, password, email });

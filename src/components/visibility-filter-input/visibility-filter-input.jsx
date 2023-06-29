@@ -1,3 +1,6 @@
+/**
+ * @fileoverview visibility filter input component that allows the user to filter movies by title
+ */
 import React from 'react';
 import { connect } from 'react-redux';
 

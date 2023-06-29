@@ -1,5 +1,5 @@
 /** 
- The LoginView component allows the user to log in. The component is exported and rendered in the main-view.jsx file.
+ @fileoverview The LoginView component allows the user to log in. The component is exported and rendered in the main-view.jsx file.
  */
 
 import React, { useState } from 'react';
