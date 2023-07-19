@@ -64,7 +64,7 @@ export function ProfileView({ movies }) {
       const updateUser = () => {
         let token = localStorage.getItem('token');
         let user = localStorage.getItem("user");
-        axios.put(`https://fabiflix.herokuapp.com/users/${user}`, {
+        axios.put(`https://movie-api-evho.onrender.com/users/${user}`, {
           Username: username,
           Email: email, //Email is a variable which holds the email
           Password: password
@@ -95,7 +95,7 @@ const deleteUser = () => {
     setShow(false)
     let token = localStorage.getItem('token');
     let user = localStorage.getItem("user");
-    axios.delete(`https://fabiflix.herokuapp.com/users/${user}`,
+    axios.delete(`https://movie-api-evho.onrender.com/users/${user}`,
       {
         headers: {
           Authorization: 'Bearer ' + token

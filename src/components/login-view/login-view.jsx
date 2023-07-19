@@ -71,7 +71,7 @@ export function LoginView(props) {
       return null;
     }
     // Send a request to the server for authentication with axios
-    axios.post('https://fabiflix.herokuapp.com/login', {
+    axios.post('https://movie-api-evho.onrender.com/login', {
       Username: username,
       Password: password
     })

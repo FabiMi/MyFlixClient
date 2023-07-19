@@ -25,7 +25,7 @@ export class MovieCard extends React.Component {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
     axios
-      .post(`https://fabiflix.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {}, {
+      .post(`https://movie-api-evho.onrender.com/users/${user}/movies/${this.props.movie._id}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
         method: 'POST',
       })
@@ -50,7 +50,7 @@ export class MovieCard extends React.Component {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
     axios
-      .delete(`https://fabiflix.herokuapp.com/users/${user}/movies/${this.props.movie._id}`, {}, {
+      .delete(`https://movie-api-evho.onrender.com/users/${user}/movies/${this.props.movie._id}`, {}, {
         headers: { Authorization: `Bearer ${token}` },
         method: 'DELETE',
       })

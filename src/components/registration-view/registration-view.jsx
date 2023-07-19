@@ -63,7 +63,7 @@ export function RegistrationView(props) {
     if (!validInput) {
       return null;
     }
-      axios.post('https://fabiflix.herokuapp.com/users', {
+      axios.post('https://movie-api-evho.onrender.com/users', {
           Username: username,
           Password: password,
           Email: email
