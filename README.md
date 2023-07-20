@@ -16,7 +16,7 @@ Polished User Experience: We strive to deliver a polished user experience, payin
 Access and Availability
 
 
-![ScreenShot](https://github.com/FabiMi/Pokedex2/blob/main/img/Screenshot%202023-07-19%20at%2016.57.48.png)
+![ScreenShot](https://github.com/FabiMi/MyFlixClient/blob/main/screenshots/Screenshot%202023-07-20%20at%2013.38.49.png)
 myFlix is available to users at any time, providing you with the flexibility to access and explore movies whenever you want. The app is hosted online, ensuring easy accessibility from any device with an internet connection. Whether you prefer using your computer, smartphone, or tablet, myFlix guarantees a consistent and seamless user experience across platforms.
 
 Why Choose myFlix?
