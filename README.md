@@ -1,7 +1,7 @@
 myFlix App
 
 
-[![Watch the video](https://img.youtube.com/vi/nTQUwghvy5Q/default.jpg)](https://youtu.be/Cl9oeH79RpU)
+[![Watch the video](https://youtu.be/Cl9oeH79RpU)]
 
 
 
