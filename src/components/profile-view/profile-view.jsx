@@ -36,7 +36,7 @@ export function ProfileView({ movies }) {
       const getUser = () => {
         let token = localStorage.getItem('token');
         let user = localStorage.getItem("user");
-        axios.get(`https://fabiflix.herokuapp.com/users/${user}`, {
+        axios.get(`https://movie-api-evho.onrender.com/users/${user}`, {
           headers: { Authorization: `Bearer ${token}` }
         })
           .then((response) => {
@@ -187,7 +187,7 @@ const deleteUser = () => {
           </Form.Group>
 
           <Button variant="warning" onClick={updateUser}>
-            Update you profile
+            Update your profile
           </Button>
 
           {/* This button triggers a modal that's called bellow   */}

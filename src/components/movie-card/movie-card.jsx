@@ -8,7 +8,8 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
-
+import Accordion from 'react-bootstrap/Accordion';
+import AccordionHeader from 'react-bootstrap/AccordionHeader';
 
 
 export class MovieCard extends React.Component {
@@ -29,12 +30,12 @@ export class MovieCard extends React.Component {
         headers: { Authorization: `Bearer ${token}` },
         method: 'POST',
       })
-        .then(response => {
-          alert(`Added to Favorite List`)
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      .then(response => {
+        alert(`Added to Favorite List`)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
 
@@ -46,7 +47,7 @@ export class MovieCard extends React.Component {
    * @param {string} movie
    * @method: 'DELETE',
    */
-  removeFavorite () {
+  removeFavorite() {
     const token = localStorage.getItem("token");
     const user = localStorage.getItem("user");
     axios
@@ -54,33 +55,40 @@ export class MovieCard extends React.Component {
         headers: { Authorization: `Bearer ${token}` },
         method: 'DELETE',
       })
-        .then(response => {
-          alert(`Deleted out of you Favorite List`)
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+      .then(response => {
+        alert(`Deleted out of you Favorite List`)
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
 
   render() {
     const { movie, onMovieClick } = this.props;
     return (
-        <Card>
-          <Card.Img variant="top" crossOrigin="anonymous" src={movie.ImagePath} />
-          <Card.Body>
-            <Card.Title>{movie.Title}</Card.Title>
-          <Card.Text>{movie.Description}</Card.Text>
+      <Card>
+        <Card.Img variant="top" crossOrigin="anonymous" src={movie.ImagePath} />
+        <Card.Body>
+          <Accordion style={{ backgroundColor: "black", color: "white" }} defaultActiveKey="1">
+            <Accordion.Item eventKey="0">
+
+<AccordionHeader>{movie.Title}</AccordionHeader>
+              <Accordion.Body>
+                {movie.Description}
+              </Accordion.Body>
+            </Accordion.Item>
+          </Accordion>
           <Link to={`/movies/${movie._id}`}>
             <Button>
               Open
             </Button>
           </Link>
           <Button variant="outline-warning" value={movie._id} onClick={(e) => this.addFavorite(e, movie)}>Add to Favourites</Button>
-          <Button variant="outline-warning" value={movie._id} onClick={(e) => this.removeFavorite(e, movie)}>Delete</Button>
-          </Card.Body>
-        </Card>
-      );
+          <Button variant="outline-warning" value={movie._id} onClick={(e) => this.removeFavorite(e, movie)}>Delete from Favourites</Button>
+        </Card.Body>
+      </Card>
+    );
   }
 }
 
@@ -92,20 +100,20 @@ export class MovieCard extends React.Component {
  * @returns {propTypes}
  */
 MovieCard.propTypes = {
-    movie: PropTypes.shape({
-      Title: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired,
-       director: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-        Bio: {},
-        Birth: {}
-        }),
-        genre: PropTypes.shape({
-        Name: PropTypes.string.isRequired,
-        Description: PropTypes.string.isRequired
-        }),
-      ImagePath: PropTypes.string.isRequired,
-     
-    }).isRequired,
-    onMovieClick: PropTypes.func.isRequired
-  };
+  movie: PropTypes.shape({
+    Title: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    director: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Bio: {},
+      Birth: {}
+    }),
+    genre: PropTypes.shape({
+      Name: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired
+    }),
+    ImagePath: PropTypes.string.isRequired,
+
+  }).isRequired,
+  onMovieClick: PropTypes.func.isRequired
+};

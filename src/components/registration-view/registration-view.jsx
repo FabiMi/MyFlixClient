@@ -84,29 +84,41 @@ export function RegistrationView(props) {
   };
 
   return (
-    <form>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <label>
-        Email:
-        <input type="password" value={email} onChange={e => setEmail(e.target.value)} />
-      </label>
-      <Button type="submit" variant="primary"onClick={handleSubmit}>Submit</Button>
-      <Button variant="secondary" type="submit">Login</Button>
-    </form>
+    <Form>
+      <Form.Group>
+        <Form.Label>Username:</Form.Label>
+        <Form.Control
+          type='text'
+          value={username}
+          onChange={e => setUsername(e.target.value)}
+          placeholder='Enter a valid Username'
+        />
+        <p style={{color: "red"}}>{ usernameErr }</p>
+      </Form.Group>
+      <Form.Group>
+        <Form.Label>Password</Form.Label>
+        <Form.Control
+          type='password'
+          value={password}
+          onChange={e => setPassword(e.target.value)}
+          minLength='8'
+        />
+        <p style={{color: "red"}}>{ passwordErr }</p>
+      </Form.Group>
+      <Form.Group className="group">
+        <Form.Label>Email <address></address></Form.Label>
+        <Form.Control
+          type='email'
+          value={email}
+          onChange={e => setEmail(e.target.value)}
+        />
+        <p style={{color: "red"}}>{ emailErr }</p>
+      </Form.Group>
+      <Button style={{marginRight: "10px"}} type="submit" variant="primary" onClick={handleSubmit}>Submit</Button>
+      <Button variant="secondary" type="submit"> <Link to={"/"}>Login</Link></Button>
+    </Form>
   );
 }
+
 RegistrationView.propTypes = {
-  register: PropTypes.shape({
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
-    Email: PropTypes.string.isRequired,
-  }).isRequired,
-  onRegistration: PropTypes.func.isRequired,
-};
+  onRegistered: PropTypes.func.isRequired,};

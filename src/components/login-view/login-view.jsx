@@ -28,7 +28,7 @@ export function LoginView(props) {
   const [passwordErr, setPasswordErr] = useState('');
 
   
-  const [isShown, setIsShown] = useState(false);
+ 
 
 /** 
  * handle the submit button to prevent the default refresh
@@ -95,21 +95,26 @@ export function LoginView(props) {
    * @function render
    * @returns {LoginView}
    */
-  return (
-    <div>
-      {isShown && <RegistrationView />}
-      {!isShown && <form>
-      <label>
-        Username:
-        <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-      </label>
-      <label>
-        Password:
-        <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      </label>
-      <Button type="submit" variant="primary"  onClick={handleSubmit}>Submit</Button>
-      <Button type="submit" variant="secondary" onClick={handleRegister}>Register</Button>
-    </form>}
-    </div>
-  );
+
+
+  return(
+  <React.Fragment>
+  <Form>
+    <Form.Group controlId="formUsername"> {/*controlId is a unique id for each form*/}
+    <Form.Label>Username:</Form.Label>
+      <Form.Control type="text" placeholder="Enter Username" value={username} onChange={e => setUsername(e.target.value)} /> 
+      <p style={{color: "red"}}>{ usernameErr }</p>
+  </Form.Group>
+
+  <Form.Group controlId="formPassword"> {/*controlId is a unique id for each form*/}
+    <Form.Label>Password</Form.Label>
+      <Form.Control type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
+      <p style={{color: "red"}}>{ passwordErr }</p>
+  </Form.Group>
+  <Button type="submit" variant="primary" style={{marginRight: "10px"}} onClick={handleSubmit}>Login</Button>
+  <Button type="submit" variant="secondary"><Link to={"/register"}>Register</Link></Button>
+  </Form>
+  </React.Fragment>
+
+  )
 }

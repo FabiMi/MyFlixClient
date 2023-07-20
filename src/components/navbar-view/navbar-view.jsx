@@ -51,7 +51,7 @@ export function NavbarView({ user }) {
             )}
 
             {!isAuth() && (
-              <Nav.Link as={Link} to={`/register`}>Sign Up</Nav.Link>
+              <Nav.Link as={Link} to={`/register`}>Register</Nav.Link>
             )}
 
 

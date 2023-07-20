@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import {BrowserRouter as Router, Routes ,Route, Redirect, Link,
+import {BrowserRouter as Router ,Route, Redirect, Link,
 } from "react-router-dom";
 import { setMovies } from '../../actions/actions';
 import MoviesList from '../movies-list/movies-list';
