@@ -28,6 +28,8 @@ export function LoginView(props) {
   const [passwordErr, setPasswordErr] = useState('');
 
   
+  const [isShown, setIsShown] = useState(false);
+
 /** 
  * handle the submit button to prevent the default refresh
  */
