@@ -1,5 +1,10 @@
 myFlix App
 
+
+[![Watch the video](https://img.youtube.com/vi/nTQUwghvy5Q/default.jpg)](https://youtu.be/Cl9oeH79RpU)
+
+
+
 Welcome to the myFlix app, a platform designed for movie enthusiasts who love reading information about different movies. With myFlix, you can dive into the world of movies and discover new titles, while also having the ability to save your favorite films for future reference or to recommend to others.
 
 Features
