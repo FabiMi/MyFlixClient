@@ -7,6 +7,12 @@ myFlix App
 
 Welcome to the myFlix app, a platform designed for movie enthusiasts who love reading information about different movies. With myFlix, you can dive into the world of movies and discover new titles, while also having the ability to save your favorite films for future reference or to recommend to others.
 
+
+
+
+
+
+
 Features
 ![ScreenShot](https://github.com/FabiMi/MyFlixClient/blob/main/screenshots/Screenshot%202023-07-20%20at%2012.47.35.png)
 
