@@ -8,7 +8,6 @@ MyFlixClient is a web application built with React, Redux, and Bootstrap that al
 [![Watch the video](https://img.youtube.com/vi/nTQUwghvy5Q/default.jpg)](https://youtu.be/Cl9oeH79RpU)
 
 
-
 ![ScreenShot](https://github.com/FabiMi/MyFlixClient/blob/main/screenshots/Screenshot%202023-07-20%20at%2012.47.35.png)
 ![ScreenShot](https://github.com/FabiMi/MyFlixClient/blob/main/screenshots/Screenshot%202023-07-20%20at%2013.38.33.png)
 
