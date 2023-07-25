@@ -3,7 +3,7 @@
 
 MyFlixClient is a web application built with React, Redux, and Bootstrap that allows you to browse and explore a collection of movies and TV shows.
 
-## [Live Demo](https://fabimi.github.io/MyFlixClient)
+## [Live Demo](https://fabiflix.netlify.app/)
 
 [![Watch the video](https://img.youtube.com/vi/nTQUwghvy5Q/default.jpg)](https://youtu.be/Cl9oeH79RpU)
 
